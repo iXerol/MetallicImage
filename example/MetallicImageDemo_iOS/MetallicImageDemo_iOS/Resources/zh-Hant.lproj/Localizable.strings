@@ -1,0 +1,49 @@
+"Basic Features" = "基礎功能";
+"MPS Filters" = "MPS濾鏡";
+"Extension Filters" = "其他濾鏡";
+"Combined Filters" = "濾鏡組合";
+
+"Image Effects" = "圖像效果";
+"Select Image" = "選擇圖片";
+"Save" = "保存";
+
+"Save_Image_Error" = "保存圖片失敗";
+"Authorize_Save_Image" = "保存圖片需要允許訪問您的相冊。";
+"Save_Image_Success" = "已保存圖片";
+"Save_Image_Message" = "圖片已成功保存至您的相冊。";
+"Save_Video_Error" = "保存影片失敗";
+"Authorize_Save_Video" = "保存影片需要允許訪問您的相冊。";
+"Save_Video_Success" = "已保存影片";
+"Save_Video_Message" = "影片已成功保存至您的相冊。";
+"OK" = "好的";
+
+"Camera_Error" = "無法訪問相機";
+"Authorize_Camera" = "這項操作需要訪問您的相機。";
+"No_Camera" = "本設備沒有相機。";
+"Not_Support_Catalyst" = "Mac Catalyst 暫不支援訪問相機。";
+
+"Photo" = "相冊";
+"Camera" = "相機";
+
+"Gaussian Blur" = "高斯模糊";
+"Box Blur" = "均值濾波模糊（方框模糊）";
+"Tent Blur" = "Tent模糊";
+"Median Blur" = "中值濾波模糊";
+"Area Max" = "區域最大值";
+"Area Min" = "區域最小值";
+"Lanczos Scale" = "Lanczos插值縮放";
+"Bilinear Scale" = "雙線性插值縮放";
+"Sobel Edge Detection" = "Sobel算子邊緣檢測";
+"Laplacian Edge Detection" = "拉普拉斯算子邊緣檢測";
+"Threshold Binary" = "閾值二值化";
+
+"Brightness" = "亮度";
+"Saturation" = "飽和度";
+"Contrast" = "對比度";
+"White Balance" = "白平衡";
+"Hue" = "色調";
+"Sharpen" = "鋭化";
+
+"Contrast => Gaussian Blur" = "對比度 => 高斯模糊";
+"Area Max => Sharpen" = "區域最大值 => 鋭化";
+"Hue => Brightness => Box Blur" = "色調 => 亮度 => 方框模糊";

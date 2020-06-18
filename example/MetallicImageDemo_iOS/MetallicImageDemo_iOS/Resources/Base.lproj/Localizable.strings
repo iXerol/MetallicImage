@@ -1,0 +1,49 @@
+"Basic Features";
+"MPS Filters";
+"Extension Filters";
+"Combined Filters";
+
+"Image Effects";
+"Select Image";
+"Save";
+
+"Save_Image_Error";
+"Authorize_Save_Image";
+"Save_Image_Success";
+"Save_Image_Message";
+"Save_Video_Error";
+"Authorize_Save_Video";
+"Save_Video_Success";
+"Save_Video_Message";
+"OK";
+
+"Camera_Error";
+"Authorize_Camera";
+"No_Camera";
+"Not_Support_Catalyst";
+
+"Photo";
+"Camera";
+
+"Gaussian Blur";
+"Box Blur";
+"Tent Blur";
+"Median Blur";
+"Area Max";
+"Area Min";
+"Lanczos Scale";
+"Bilinear Scale";
+"Sobel Edge Detection";
+"Laplacian Edge Detection";
+"Threshold Binary";
+
+"Brightness";
+"Saturation";
+"Contrast";
+"White Balance";
+"Hue";
+"Sharpen";
+
+"Contrast => Gaussian Blur";
+"Area Max => Sharpen";
+"Hue => Brightness => Box Blur";

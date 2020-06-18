@@ -1,0 +1,49 @@
+"Basic Features" = "Basic Features";
+"MPS Filters" = "MPS Filters";
+"Extension Filters" = "Extension Filters";
+"Combined Filters" = "Combined Filters";
+
+"Image Effects" = "Image Effects";
+"Select Image" = "Select Image";
+"Save" = "Save";
+
+"Save_Image_Error" = "Failed to save Image";
+"Authorize_Save_Image" = "Saving image needs authorization to access your photos library.";
+"Save_Image_Success" = "Image Saved";
+"Save_Image_Message" = "The image has been saved successfully to your photos library.";
+"Save_Video_Error" = "Failed to save Video";
+"Authorize_Save_Video" = "Saving Video needs authorization to access your photos library.";
+"Save_Video_Success" = "Video Saved";
+"Save_Video_Message" = "The Video has been saved successfully to your photos library.";
+"OK" = "OK";
+
+"Camera_Error" = "Cannot Access your camera";
+"Authorize_Camera" = "This operation needs to access your camera.";
+"No_Camera" = "This Device has no camera.";
+"Not_Support_Catalyst" = "Mac Catalyst cannot use cameras.";
+
+"Photo" = "Photo";
+"Camera" = "Camera";
+
+"Gaussian Blur" = "Gaussian Blur";
+"Box Blur" = "Box Blur";
+"Tent Blur" = "Tent Blur";
+"Median Blur" = "Median Blur";
+"Area Max" = "Area Max";
+"Area Min" = "Area Min";
+"Lanczos Scale" = "Lanczos Scale";
+"Bilinear Scale" = "Bilinear Scale";
+"Sobel Edge Detection" = "Sobel Edge Detection";
+"Laplacian Edge Detection" = "Laplacian Edge Detection";
+"Threshold Binary" = "Threshold Binary";
+
+"Brightness" = "Brightness";
+"Saturation" = "Saturation";
+"Contrast" = "Contrast";
+"White Balance" = "White Balance";
+"Hue" = "Hue";
+"Sharpen" = "Sharpen";
+
+"Contrast => Gaussian Blur" = "Contrast => Gaussian Blur";
+"Area Max => Sharpen" = "Area Max => Sharpen";
+"Hue => Brightness => Box Blur" = "Hue => Brightness => Box Blur";
