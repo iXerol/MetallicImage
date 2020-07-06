@@ -1,5 +1,6 @@
 import MetallicImage
 import Photos
+import PhotosUI
 import UIKit
 
 class MultiFilterImageViewController: UIViewController {
@@ -70,42 +71,33 @@ class MultiFilterImageViewController: UIViewController {
 
     @objc
     func selectImage() {
-        let imagePickerController = UIImagePickerController()
-        imagePickerController.allowsEditing = false
-        imagePickerController.sourceType = .photoLibrary
-        imagePickerController.delegate = self
-        present(imagePickerController, animated: true, completion: nil)
+        if #available(iOS 14, *) {
+            var configutation = PHPickerConfiguration()
+            configutation.filter = .any(of: [.images, .livePhotos])
+            let pickerViewController = PHPickerViewController(configuration: configutation)
+            pickerViewController.delegate = self
+            present(pickerViewController, animated: true, completion: nil)
+        } else {
+            let imagePickerController = UIImagePickerController()
+            imagePickerController.allowsEditing = false
+            imagePickerController.sourceType = .photoLibrary
+            imagePickerController.delegate = self
+            present(imagePickerController, animated: true, completion: nil)
+        }
     }
 
     @objc
     func saveImage() {
-        switch PHPhotoLibrary.authorizationStatus() {
-        case .authorized:
-            dispatchQueue.sync {
-                if let filter = self.filters.last {
-                    filter.transmitPreviousImage(to: saveImageOutput)
+        dispatchQueue.sync {
+            if let filter = self.filters.last {
+                filter.transmitPreviousImage(to: saveImageOutput)
+            } else {
+                if sourceSegmentedControl.selectedSegmentIndex == 0 {
+                    imageInput.transmitPreviousImage(to: saveImageOutput)
                 } else {
-                    if sourceSegmentedControl.selectedSegmentIndex == 0 {
-                        imageInput.transmitPreviousImage(to: saveImageOutput)
-                    } else {
-                        camera?.transmitPreviousImage(to: saveImageOutput)
-                    }
+                    camera?.transmitPreviousImage(to: saveImageOutput)
                 }
             }
-        case .denied, .restricted:
-            let alertController = UIAlertController(title: NSLocalizedString("Save_Image_Error", comment: "Save Image Error Title"),
-                                                    message: NSLocalizedString("Authorize_Save_Image", comment: "Authorize to save image"),
-                                                    preferredStyle: .alert)
-            alertController.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "OK Confirm"), style: .default))
-            present(alertController, animated: true, completion: nil)
-        case .notDetermined:
-            PHPhotoLibrary.requestAuthorization { _ in
-                DispatchQueue.main.async {
-                    self.saveImage()
-                }
-            }
-        @unknown default:
-            fatalError("Undefined Photo Library Authorization Status")
         }
     }
 
@@ -182,7 +174,7 @@ class MultiFilterImageViewController: UIViewController {
         DispatchQueue.main.async {
             guard let camera = self.camera,
                 let orientation = UIApplication.shared.windows.first?.windowScene?.interfaceOrientation else {
-                    return
+                return
             }
             switch orientation {
             case .portrait:
@@ -210,17 +202,17 @@ class MultiFilterImageViewController: UIViewController {
                     setCameraOrientation()
                 } catch Camera.CameraError.noCameraDevice {
                     #if targetEnvironment(macCatalyst)
-                    let message = NSLocalizedString("Not_Support_Catalyst", comment: "Mac apps built with Mac Catalyst can’t use the AVFoundation Capture classes.")
+                        let message = NSLocalizedString("Not_Support_Catalyst", comment: "Mac apps built with Mac Catalyst can’t use the AVFoundation Capture classes.")
                     #else
-                    let message = NSLocalizedString("No_Camera", comment: "There's no camera")
+                        let message = NSLocalizedString("No_Camera", comment: "There's no camera")
                     #endif
                     let alertController = UIAlertController(title: NSLocalizedString("Camera_Error", comment: "Cannot access camera"),
                                                             message: message,
                                                             preferredStyle: .alert)
                     alertController.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "OK Confirm"),
                                                             style: .default) { _ in
-                                                                self.sourceSegmentedControl.selectedSegmentIndex = 0
-                                                                self.segmentedControlDidChangeValue(sender: self.sourceSegmentedControl)
+                            self.sourceSegmentedControl.selectedSegmentIndex = 0
+                            self.segmentedControlDidChangeValue(sender: self.sourceSegmentedControl)
                     })
                     DispatchQueue.main.async {
                         self.present(alertController, animated: true, completion: nil)
@@ -231,8 +223,8 @@ class MultiFilterImageViewController: UIViewController {
                                                             preferredStyle: .alert)
                     alertController.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "OK Confirm"),
                                                             style: .default) { _ in
-                                                                self.sourceSegmentedControl.selectedSegmentIndex = 0
-                                                                self.segmentedControlDidChangeValue(sender: self.sourceSegmentedControl)
+                            self.sourceSegmentedControl.selectedSegmentIndex = 0
+                            self.segmentedControlDidChangeValue(sender: self.sourceSegmentedControl)
                     })
                     DispatchQueue.main.async {
                         self.present(alertController, animated: true, completion: nil)
@@ -254,8 +246,8 @@ class MultiFilterImageViewController: UIViewController {
                                                     preferredStyle: .alert)
             alertController.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "OK Confirm"),
                                                     style: .default) { _ in
-                                                        self.sourceSegmentedControl.selectedSegmentIndex = 0
-                                                        self.segmentedControlDidChangeValue(sender: self.sourceSegmentedControl)
+                    self.sourceSegmentedControl.selectedSegmentIndex = 0
+                    self.segmentedControlDidChangeValue(sender: self.sourceSegmentedControl)
             })
             DispatchQueue.main.async {
                 self.present(alertController, animated: true, completion: nil)
@@ -282,5 +274,22 @@ extension MultiFilterImageViewController: UIImagePickerControllerDelegate, UINav
             sourceImage = UIImage(cgImage: croppedImage, scale: sourceImage.scale, orientation: sourceImage.imageOrientation)
         }
         dismiss(animated: true, completion: nil)
+    }
+}
+
+@available(iOS 14, *)
+extension MultiFilterImageViewController: PHPickerViewControllerDelegate {
+    func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
+        dismiss(animated: true)
+
+        if let itemProvider = results.first?.itemProvider, itemProvider.canLoadObject(ofClass: UIImage.self) {
+            let previousImage = sourceImage
+            itemProvider.loadObject(ofClass: UIImage.self) { [weak self] image, _ in
+                DispatchQueue.main.async {
+                    guard let self = self, let image = image as? UIImage, self.sourceImage == previousImage else { return }
+                    self.sourceImage = image
+                }
+            }
+        }
     }
 }

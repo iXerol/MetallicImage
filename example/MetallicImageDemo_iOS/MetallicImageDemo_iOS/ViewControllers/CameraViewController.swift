@@ -44,10 +44,12 @@ class CameraViewController: UIViewController {
 
     @objc
     func segmentedControlDidChangeValue(sender: UISegmentedControl) {
-        setCamera(device: devices[sender.selectedSegmentIndex])
-        camera?.runBenchmark = true
-        camera?.addTarget(imageView)
-        camera?.startCapture()
+        setCamera(device: devices[sender.selectedSegmentIndex]) { [weak self] in
+            guard let self = self, let camera = self.camera else { return }
+            camera.runBenchmark = true
+            camera.addTarget(self.imageView)
+            camera.startCapture()
+        }
     }
 
     @objc
@@ -153,9 +155,11 @@ class CameraViewController: UIViewController {
             present(alertController, animated: true, completion: nil)
             return
         }
-        setCamera(device: devices[0])
-        camera?.addTarget(imageView)
-        camera?.runBenchmark = true
+        setCamera(device: devices[0]) { [weak self] in
+            guard let self = self, let camera = self.camera else { return }
+            camera.addTarget(self.imageView)
+            camera.runBenchmark = true
+        }
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -171,8 +175,8 @@ class CameraViewController: UIViewController {
     func setCameraOrientation() {
         DispatchQueue.main.async {
             guard let camera = self.camera,
-                let orientation = UIApplication.shared.windows.first?.windowScene?.interfaceOrientation else {
-                    return
+                  let orientation = UIApplication.shared.windows.first?.windowScene?.interfaceOrientation else {
+                return
             }
             switch orientation {
             case .portrait:
@@ -192,7 +196,7 @@ class CameraViewController: UIViewController {
         }
     }
 
-    func setCamera(device: AVCaptureDevice) {
+    func setCamera(device: AVCaptureDevice, completion: @escaping () -> Void) {
         switch AVCaptureDevice.authorizationStatus(for: .video) {
         case .authorized:
             do {
@@ -232,50 +236,38 @@ class CameraViewController: UIViewController {
             }
         case .notDetermined:
             AVCaptureDevice.requestAccess(for: .video) { _ in
-                self.setCamera(device: device)
+                self.setCamera(device: device) { [weak self] in
+                    completion()
+                    self?.setCameraOrientation()
+                    self?.camera?.startCapture()
+                }
             }
         @unknown default:
             fatalError("Undefined Photo Library Authorization Status")
         }
+        completion()
     }
 
     func saveVideo() {
-        switch PHPhotoLibrary.authorizationStatus() {
-        case .authorized:
-            dispatchQueue.sync {
-                PHPhotoLibrary.shared().performChanges({
-                    _ = PHAssetChangeRequest.creationRequestForAssetFromVideo(atFileURL: self.fileURL)
-                }) { success, error in
-                    let alertController: UIAlertController
-                    if success {
-                        alertController = UIAlertController(title: NSLocalizedString("Save_Video_Success", comment: "Save Video Success Title"),
-                                                            message: NSLocalizedString("Save_Video_Message", comment: "Save Video Success Message"),
-                                                            preferredStyle: .alert)
-                    } else {
-                        alertController = UIAlertController(title: NSLocalizedString("Save_Video_Error", comment: "Save Video Error Title"),
-                                                            message: error?.localizedDescription,
-                                                            preferredStyle: .alert)
-                    }
-                    alertController.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "OK Confirm"), style: .default))
-                    DispatchQueue.main.async {
-                        self.present(alertController, animated: true, completion: nil)
-                    }
+        dispatchQueue.sync {
+            PHPhotoLibrary.shared().performChanges({
+                _ = PHAssetChangeRequest.creationRequestForAssetFromVideo(atFileURL: self.fileURL)
+            }) { success, error in
+                let alertController: UIAlertController
+                if success {
+                    alertController = UIAlertController(title: NSLocalizedString("Save_Video_Success", comment: "Save Video Success Title"),
+                                                        message: NSLocalizedString("Save_Video_Message", comment: "Save Video Success Message"),
+                                                        preferredStyle: .alert)
+                } else {
+                    alertController = UIAlertController(title: NSLocalizedString("Save_Video_Error", comment: "Save Video Error Title"),
+                                                        message: error?.localizedDescription,
+                                                        preferredStyle: .alert)
                 }
-            }
-        case .denied, .restricted:
-            let alertController = UIAlertController(title: NSLocalizedString("Save_Video_Error", comment: "Save Video Error Title"),
-                                                    message: NSLocalizedString("Authorize_Save_Video", comment: "Authorize to save Video"),
-                                                    preferredStyle: .alert)
-            alertController.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "OK Confirm"), style: .default))
-            present(alertController, animated: true, completion: nil)
-        case .notDetermined:
-            PHPhotoLibrary.requestAuthorization { _ in
+                alertController.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "OK Confirm"), style: .default))
                 DispatchQueue.main.async {
-                    self.saveVideo()
+                    self.present(alertController, animated: true, completion: nil)
                 }
             }
-        @unknown default:
-            fatalError("Undefined Photo Library Authorization Status")
         }
     }
 

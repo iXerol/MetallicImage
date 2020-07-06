@@ -7,5 +7,4 @@
  */
 
 "NSCameraUsageDescription" = "允許訪問相機來處理拍攝內容";
-"NSPhotoLibraryUsageDescription" = "允許訪問相冊來選擇圖片";
-"NSPhotoLibraryAddUsageDescription" = "允許在相冊添加處理後的圖片";
+"NSPhotoLibraryAddUsageDescription" = "允許在相冊添加處理後的圖片或影片";

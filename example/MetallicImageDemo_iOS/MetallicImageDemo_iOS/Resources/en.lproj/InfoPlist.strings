@@ -6,6 +6,5 @@
  Copyright © 2020 Xerol Wong. All rights reserved.
  */
 
-"NSCameraUsageDescription" = "Allow access camera to process camera view";
-"NSPhotoLibraryUsageDescription" = "Allow access photo library to process images";
-"NSPhotoLibraryAddUsageDescription" = "Allow add photos to photo library";
+"NSCameraUsageDescription" = "MetallicImage uses camera to process camera view";
+"NSPhotoLibraryAddUsageDescription" = "Allow MetallicImage to add photos and videos to photo library";
