@@ -1,5 +1,6 @@
 import MetalKit
 import MetalPerformanceShaders
+import QuartzCore
 
 public class ImageView: MTKView, ImageConsumer {
     var currentTexture: Texture?
@@ -22,16 +23,22 @@ public class ImageView: MTKView, ImageConsumer {
     }
 
     func commonInit() {
+        #if XCODE_12
+        if #available(iOS 13.0, OSX 10.13, tvOS 11.0, *) {
+            (layer as? CAMetalLayer)?.allowsNextDrawableTimeout = false
+        }
+        #else
         if #available(iOS 11.0, OSX 10.13, tvOS 11.0, *) {
             (layer as? CAMetalLayer)?.allowsNextDrawableTimeout = false
         }
+        #endif
         framebufferOnly = false
         autoResizeDrawable = true
         enableSetNeedsDisplay = false
         isPaused = true
     }
 
-    public override func draw(_ rect: CGRect) {
+    override public func draw(_ rect: CGRect) {
         if let currentDrawable = self.currentDrawable, let currentTexture = currentTexture {
             guard let commandBuffer = renderTarget.context.commandQueue.makeCommandBuffer() else {
                 fatalError("Failed to create command buffer")

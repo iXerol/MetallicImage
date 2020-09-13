@@ -461,6 +461,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.ixerol.MetallicImageDemo-iOS";
 				PRODUCT_NAME = MetallicImageDemo;
 				SUPPORTS_MACCATALYST = YES;
+				"SWIFT_ACTIVE_COMPILATION_CONDITIONS[sdk=iphoneos14.0]" = XCODE_12;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALID_ARCHS = "arm64 arm64e armv7 armv7s x86_64";
@@ -484,6 +485,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.ixerol.MetallicImageDemo-iOS";
 				PRODUCT_NAME = MetallicImageDemo;
 				SUPPORTS_MACCATALYST = YES;
+				"SWIFT_ACTIVE_COMPILATION_CONDITIONS[sdk=iphoneos14.0]" = XCODE_12;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALID_ARCHS = "arm64 arm64e armv7 armv7s x86_64";

@@ -1,7 +1,10 @@
 import MetallicImage
 import Photos
-import PhotosUI
 import UIKit
+
+#if canImport(PhotosUI)
+import PhotosUI
+#endif
 
 class MultiFilterImageViewController: UIViewController {
     private let imageView = ImageView(frame: .zero)
@@ -71,19 +74,34 @@ class MultiFilterImageViewController: UIViewController {
 
     @objc
     func selectImage() {
+        #if XCODE_12
         if #available(iOS 14, *) {
-            var configutation = PHPickerConfiguration()
-            configutation.filter = .any(of: [.images, .livePhotos])
-            let pickerViewController = PHPickerViewController(configuration: configutation)
-            pickerViewController.delegate = self
-            present(pickerViewController, animated: true, completion: nil)
+            presentPHPicker()
         } else {
-            let imagePickerController = UIImagePickerController()
-            imagePickerController.allowsEditing = false
-            imagePickerController.sourceType = .photoLibrary
-            imagePickerController.delegate = self
-            present(imagePickerController, animated: true, completion: nil)
+            presentUIImagePicker()
         }
+        #else
+        presentUIImagePicker()
+        #endif
+    }
+
+    #if XCODE_12
+    @available(iOS 14.0, *)
+    func presentPHPicker() {
+        var configutation = PHPickerConfiguration()
+        configutation.filter = .any(of: [.images, .livePhotos])
+        let pickerViewController = PHPickerViewController(configuration: configutation)
+        pickerViewController.delegate = self
+        present(pickerViewController, animated: true, completion: nil)
+    }
+    #endif
+
+    func presentUIImagePicker() {
+        let imagePickerController = UIImagePickerController()
+        imagePickerController.allowsEditing = false
+        imagePickerController.sourceType = .photoLibrary
+        imagePickerController.delegate = self
+        present(imagePickerController, animated: true, completion: nil)
     }
 
     @objc
@@ -173,7 +191,7 @@ class MultiFilterImageViewController: UIViewController {
     func setCameraOrientation() {
         DispatchQueue.main.async {
             guard let camera = self.camera,
-                let orientation = UIApplication.shared.windows.first?.windowScene?.interfaceOrientation else {
+                  let orientation = UIApplication.shared.windows.first?.windowScene?.interfaceOrientation else {
                 return
             }
             switch orientation {
@@ -202,17 +220,17 @@ class MultiFilterImageViewController: UIViewController {
                     setCameraOrientation()
                 } catch Camera.CameraError.noCameraDevice {
                     #if targetEnvironment(macCatalyst)
-                        let message = NSLocalizedString("Not_Support_Catalyst", comment: "Mac apps built with Mac Catalyst can’t use the AVFoundation Capture classes.")
+                    let message = NSLocalizedString("Not_Support_Catalyst", comment: "Mac apps built with Mac Catalyst can’t use the AVFoundation Capture classes.")
                     #else
-                        let message = NSLocalizedString("No_Camera", comment: "There's no camera")
+                    let message = NSLocalizedString("No_Camera", comment: "There's no camera")
                     #endif
                     let alertController = UIAlertController(title: NSLocalizedString("Camera_Error", comment: "Cannot access camera"),
                                                             message: message,
                                                             preferredStyle: .alert)
                     alertController.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "OK Confirm"),
                                                             style: .default) { _ in
-                            self.sourceSegmentedControl.selectedSegmentIndex = 0
-                            self.segmentedControlDidChangeValue(sender: self.sourceSegmentedControl)
+                        self.sourceSegmentedControl.selectedSegmentIndex = 0
+                        self.segmentedControlDidChangeValue(sender: self.sourceSegmentedControl)
                     })
                     DispatchQueue.main.async {
                         self.present(alertController, animated: true, completion: nil)
@@ -223,8 +241,8 @@ class MultiFilterImageViewController: UIViewController {
                                                             preferredStyle: .alert)
                     alertController.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "OK Confirm"),
                                                             style: .default) { _ in
-                            self.sourceSegmentedControl.selectedSegmentIndex = 0
-                            self.segmentedControlDidChangeValue(sender: self.sourceSegmentedControl)
+                        self.sourceSegmentedControl.selectedSegmentIndex = 0
+                        self.segmentedControlDidChangeValue(sender: self.sourceSegmentedControl)
                     })
                     DispatchQueue.main.async {
                         self.present(alertController, animated: true, completion: nil)
@@ -246,8 +264,8 @@ class MultiFilterImageViewController: UIViewController {
                                                     preferredStyle: .alert)
             alertController.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "OK Confirm"),
                                                     style: .default) { _ in
-                    self.sourceSegmentedControl.selectedSegmentIndex = 0
-                    self.segmentedControlDidChangeValue(sender: self.sourceSegmentedControl)
+                self.sourceSegmentedControl.selectedSegmentIndex = 0
+                self.segmentedControlDidChangeValue(sender: self.sourceSegmentedControl)
             })
             DispatchQueue.main.async {
                 self.present(alertController, animated: true, completion: nil)
@@ -270,14 +288,15 @@ extension MultiFilterImageViewController: UIImagePickerControllerDelegate, UINav
             sourceImage = selectedImage
         }
         if let cropRect = info[.cropRect] as? CGRect,
-            let croppedImage = sourceImage.cgImage?.cropping(to: cropRect) {
+           let croppedImage = sourceImage.cgImage?.cropping(to: cropRect) {
             sourceImage = UIImage(cgImage: croppedImage, scale: sourceImage.scale, orientation: sourceImage.imageOrientation)
         }
         dismiss(animated: true, completion: nil)
     }
 }
 
-@available(iOS 14, *)
+#if XCODE_12
+@available(iOS 14.0, *)
 extension MultiFilterImageViewController: PHPickerViewControllerDelegate {
     func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
         dismiss(animated: true)
@@ -293,3 +312,4 @@ extension MultiFilterImageViewController: PHPickerViewControllerDelegate {
         }
     }
 }
+#endif
