@@ -1,3 +1,11 @@
+//
+//  LaplacianEdgeDetection.swift
+//  MetallicImage
+//
+//  Created by Xerol Wong on 5/15/20.
+//  Copyright © 2020 Xerol Wong. All rights reserved.
+//
+
 import MetalPerformanceShaders
 
 @available(iOS 10.0, tvOS 10.0, *)

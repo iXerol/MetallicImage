@@ -1,3 +1,11 @@
+//
+//  BasicFilter.swift
+//  MetallicImage
+//
+//  Created by Xerol Wong on 4/13/20.
+//  Copyright © 2020 Xerol Wong. All rights reserved.
+//
+
 import Metal
 
 open class BasicFilter: NSObject, ImageFilter {

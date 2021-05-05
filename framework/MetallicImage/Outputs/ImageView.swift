@@ -1,3 +1,11 @@
+//
+//  ImageView.swift
+//  MetallicImage
+//
+//  Created by Xerol Wong on 3/16/20.
+//  Copyright © 2020 Xerol Wong. All rights reserved.
+//
+
 import MetalKit
 import MetalPerformanceShaders
 import QuartzCore
@@ -23,15 +31,9 @@ public class ImageView: MTKView, ImageConsumer {
     }
 
     func commonInit() {
-        #if XCODE_12
-        if #available(iOS 13.0, OSX 10.13, tvOS 11.0, *) {
-            (layer as? CAMetalLayer)?.allowsNextDrawableTimeout = false
-        }
-        #else
         if #available(iOS 11.0, OSX 10.13, tvOS 11.0, *) {
             (layer as? CAMetalLayer)?.allowsNextDrawableTimeout = false
         }
-        #endif
         framebufferOnly = false
         autoResizeDrawable = true
         enableSetNeedsDisplay = false

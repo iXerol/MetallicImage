@@ -1,3 +1,11 @@
+/*
+ Localizable.strings
+ MetallicImageDemo_iOS
+
+ Created by Xerol Wong on 4/25/20.
+ Copyright © 2020 Xerol Wong. All rights reserved.
+ */
+
 "Basic Features" = "基础功能";
 "MPS Filters" = "MPS滤镜";
 "Extension Filters" = "其他滤镜";

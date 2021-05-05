@@ -1,3 +1,11 @@
+//
+//  HueAdjustment.swift
+//  MetallicImage
+//
+//  Created by Xerol Wong on 5/16/20.
+//  Copyright © 2020 Xerol Wong. All rights reserved.
+//
+
 import Foundation
 
 public class HueAdjustment: BasicFilter {

@@ -1,3 +1,10 @@
+//
+//  AppDelegate.swift
+//  MetallicImageDemo_iOS
+//
+//  Created by Xerol Wong on 3/4/20.
+//  Copyright © 2020 Xerol Wong. All rights reserved.
+//
 
 import UIKit
 

@@ -1,3 +1,11 @@
+//
+//  BoxBlur.swift
+//  MetallicImage
+//
+//  Created by Xerol Wong on 4/15/20.
+//  Copyright © 2020 Xerol Wong. All rights reserved.
+//
+
 import MetalPerformanceShaders
 
 public class BoxBlur: BasicMPSFilter {

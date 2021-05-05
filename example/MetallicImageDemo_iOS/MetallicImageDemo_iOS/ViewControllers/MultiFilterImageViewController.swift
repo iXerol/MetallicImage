@@ -1,3 +1,11 @@
+//
+//  MultiFilterImageViewController.swift
+//  MetallicImageDemo_iOS
+//
+//  Created by Xerol Wong on 5/16/20.
+//  Copyright © 2020 Xerol Wong. All rights reserved.
+//
+
 import MetallicImage
 import Photos
 import UIKit
@@ -74,34 +82,11 @@ class MultiFilterImageViewController: UIViewController {
 
     @objc
     func selectImage() {
-        #if XCODE_12
-        if #available(iOS 14, *) {
-            presentPHPicker()
-        } else {
-            presentUIImagePicker()
-        }
-        #else
-        presentUIImagePicker()
-        #endif
-    }
-
-    #if XCODE_12
-    @available(iOS 14.0, *)
-    func presentPHPicker() {
         var configutation = PHPickerConfiguration()
         configutation.filter = .any(of: [.images, .livePhotos])
         let pickerViewController = PHPickerViewController(configuration: configutation)
         pickerViewController.delegate = self
         present(pickerViewController, animated: true, completion: nil)
-    }
-    #endif
-
-    func presentUIImagePicker() {
-        let imagePickerController = UIImagePickerController()
-        imagePickerController.allowsEditing = false
-        imagePickerController.sourceType = .photoLibrary
-        imagePickerController.delegate = self
-        present(imagePickerController, animated: true, completion: nil)
     }
 
     @objc
@@ -280,23 +265,6 @@ class MultiFilterImageViewController: UIViewController {
     }
 }
 
-extension MultiFilterImageViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
-        if let selectedImage = info[.editedImage] as? UIImage {
-            sourceImage = selectedImage
-        } else if let selectedImage = info[.originalImage] as? UIImage {
-            sourceImage = selectedImage
-        }
-        if let cropRect = info[.cropRect] as? CGRect,
-           let croppedImage = sourceImage.cgImage?.cropping(to: cropRect) {
-            sourceImage = UIImage(cgImage: croppedImage, scale: sourceImage.scale, orientation: sourceImage.imageOrientation)
-        }
-        dismiss(animated: true, completion: nil)
-    }
-}
-
-#if XCODE_12
-@available(iOS 14.0, *)
 extension MultiFilterImageViewController: PHPickerViewControllerDelegate {
     func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
         dismiss(animated: true)
@@ -312,4 +280,3 @@ extension MultiFilterImageViewController: PHPickerViewControllerDelegate {
         }
     }
 }
-#endif

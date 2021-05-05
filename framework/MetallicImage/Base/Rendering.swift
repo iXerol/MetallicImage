@@ -1,3 +1,11 @@
+//
+//  Rendering.swift
+//  MetallicImage
+//
+//  Created by Xerol Wong on 3/31/20.
+//  Copyright © 2020 Xerol Wong. All rights reserved.
+//
+
 import CoreGraphics
 import Metal
 
@@ -59,7 +67,7 @@ class RenderTargetState {
     }
 
     func setFragmentBufferValue(_ value: [Float], at index: Int) {
-        guard (0 ..< fragmentBufferValues.count).contains(index) else {
+        guard 0 ..< fragmentBufferValues.count ~= index else {
             fatalError("No such fragment buffer index")
         }
         fragmentBufferValues[index] = value

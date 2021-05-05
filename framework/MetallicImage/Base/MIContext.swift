@@ -1,3 +1,11 @@
+//
+//  MIContext.swift
+//  MetallicImage
+//
+//  Created by Xerol Wong on 2/27/20.
+//  Copyright © 2020 Xerol Wong. All rights reserved.
+//
+
 import Dispatch
 import Foundation
 import Metal
@@ -17,8 +25,6 @@ public class MIContext {
         }
         return MIContext(device: device)
     }()
-
-    public static let bundle = Bundle(for: MIContext.self)
 
     public let device: MTLDevice
 
@@ -40,7 +46,7 @@ public class MIContext {
         }
         self.commandQueue = commandQueue
 
-        guard let metalLibraryPath = MIContext.bundle.path(forResource: "default", ofType: "metallib") else {
+        guard let metalLibraryPath = Bundle.module.path(forResource: "default", ofType: "metallib") else {
             fatalError("Failed to load Metal library")
         }
         do {

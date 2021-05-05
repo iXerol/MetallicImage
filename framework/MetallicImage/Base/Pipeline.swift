@@ -1,3 +1,11 @@
+//
+//  Pipeline.swift
+//  MetallicImage
+//
+//  Created by Xerol Wong on 2/27/20.
+//  Copyright © 2020 Xerol Wong. All rights reserved.
+//
+
 import Dispatch
 
 public protocol ImageSource {
@@ -29,7 +37,7 @@ extension ImageSource {
     }
 }
 
-public protocol ImageConsumer: class {
+public protocol ImageConsumer: AnyObject {
     func newTexture(_ texture: Texture)
 }
 

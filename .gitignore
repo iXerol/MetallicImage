@@ -26,5 +26,11 @@ documentation/*
 # Carthage
 Carthage/Build
 
+# Swift Package
+.swiftpm
+Packages
+.build/
+DerivedData/
+
 # Visual Studio Code
 .vscode

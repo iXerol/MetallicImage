@@ -1,3 +1,11 @@
+//
+//  SatuationAdjustment.swift
+//  MetallicImage
+//
+//  Created by Xerol Wong on 4/22/20.
+//  Copyright © 2020 Xerol Wong. All rights reserved.
+//
+
 import Foundation
 
 public class SaturationAdjustment: BasicFilter {

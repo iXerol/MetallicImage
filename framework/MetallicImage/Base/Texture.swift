@@ -1,3 +1,11 @@
+//
+//  Texture.swift
+//  MetallicImage
+//
+//  Created by Xerol Wong on 3/21/20.
+//  Copyright © 2020 Xerol Wong. All rights reserved.
+//
+
 import CoreGraphics
 import CoreMedia
 import Metal

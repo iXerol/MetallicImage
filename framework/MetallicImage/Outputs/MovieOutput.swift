@@ -1,3 +1,11 @@
+//
+//  MovieOutput.swift
+//  MetallicImage
+//
+//  Created by Xerol Wong on 5/12/20.
+//  Copyright © 2020 Xerol Wong. All rights reserved.
+//
+
 import AVFoundation
 import Dispatch
 

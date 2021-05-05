@@ -1,3 +1,11 @@
+//
+//  BilinearScale.swift
+//  MetallicImage
+//
+//  Created by Xerol Wong on 5/14/20.
+//  Copyright © 2020 Xerol Wong. All rights reserved.
+//
+
 import MetalPerformanceShaders
 
 @available(iOS 11.0, tvOS 11.0, *)

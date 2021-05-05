@@ -1,10 +1,15 @@
+//
+//  MIImageViewController.swift
+//  MetallicImageDemo_iOS
+//
+//  Created by Xerol Wong on 3/31/20.
+//  Copyright © 2020 Xerol Wong. All rights reserved.
+//
+
 import MetallicImage
 import Photos
 import UIKit
-
-#if canImport(PhotosUI)
 import PhotosUI
-#endif
 
 class ImageViewController: UIViewController {
     private let imageView = ImageView(frame: .zero)
@@ -62,47 +67,25 @@ class ImageViewController: UIViewController {
 
     init(filter: BasicFilter? = nil, properties: [(propertyName: String, min: Float, max: Float)]) {
         self.filter = filter
-        filterProperties = properties.map({
+        filterProperties = properties.map {
             let inPercentage = $0.min == 0 && $0.max == .infinity
             return ($0.propertyName, $0.min, $0.max, inPercentage)
-        })
+        }
         super.init(nibName: nil, bundle: nil)
     }
 
+    @available(*, unavailable)
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
     @objc
     func selectImage() {
-        #if XCODE_12
-        if #available(iOS 14.0, *) {
-            presentPHPicker()
-        } else {
-            presentUIImagePicker()
-        }
-        #else
-        presentUIImagePicker()
-        #endif
-    }
-
-    #if XCODE_12
-    @available(iOS 14.0, *)
-    func presentPHPicker() {
         var configutation = PHPickerConfiguration()
         configutation.filter = .any(of: [.images, .livePhotos])
         let pickerViewController = PHPickerViewController(configuration: configutation)
         pickerViewController.delegate = self
         present(pickerViewController, animated: true, completion: nil)
-    }
-    #endif
-
-    func presentUIImagePicker() {
-        let imagePickerController = UIImagePickerController()
-        imagePickerController.allowsEditing = false
-        imagePickerController.sourceType = .photoLibrary
-        imagePickerController.delegate = self
-        present(imagePickerController, animated: true, completion: nil)
     }
 
     @objc
@@ -277,11 +260,7 @@ class ImageViewController: UIViewController {
                     camera = try Camera(sessionPreset: .vga640x480)
                     setCameraOrientation()
                 } catch Camera.CameraError.noCameraDevice {
-                    #if targetEnvironment(macCatalyst)
-                    let message = NSLocalizedString("Not_Support_Catalyst", comment: "Mac apps built with Mac Catalyst can’t use the AVFoundation Capture classes.")
-                    #else
                     let message = NSLocalizedString("No_Camera", comment: "There's no camera")
-                    #endif
                     let alertController = UIAlertController(title: NSLocalizedString("Camera_Error", comment: "Cannot access camera"),
                                                             message: message,
                                                             preferredStyle: .alert)
@@ -345,23 +324,6 @@ class ImageViewController: UIViewController {
     }
 }
 
-extension ImageViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
-        if let selectedImage = info[.editedImage] as? UIImage {
-            sourceImage = selectedImage
-        } else if let selectedImage = info[.originalImage] as? UIImage {
-            sourceImage = selectedImage
-        }
-        if let cropRect = info[.cropRect] as? CGRect,
-           let croppedImage = sourceImage.cgImage?.cropping(to: cropRect) {
-            sourceImage = UIImage(cgImage: croppedImage, scale: sourceImage.scale, orientation: sourceImage.imageOrientation)
-        }
-        dismiss(animated: true, completion: nil)
-    }
-}
-
-#if XCODE_12
-@available(iOS 14.0, *)
 extension ImageViewController: PHPickerViewControllerDelegate {
     func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
         dismiss(animated: true)
@@ -377,4 +339,3 @@ extension ImageViewController: PHPickerViewControllerDelegate {
         }
     }
 }
-#endif

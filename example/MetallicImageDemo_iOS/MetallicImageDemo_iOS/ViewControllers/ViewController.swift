@@ -1,13 +1,81 @@
+//
+//  ViewController.swift
+//  MetallicImageDemo_iOS
+//
+//  Created by Xerol Wong on 3/4/20.
+//  Copyright © 2020 Xerol Wong. All rights reserved.
+//
+
 import MetallicImage
 import UIKit
 
 class ViewController: UITableViewController {
     let titles = ["Basic Features", "MPS Filters", "Extension Filters", "Combined Filters"]
     let effects: [[(name: String, properties: [(propertyName: String, min: Float, max: Float)])]] = [
-        [("Photo", []), ("Camera", [])],
-        [("Gaussian Blur", [("sigma", 0, 256)]), ("Box Blur", [("blurDiameter", 0, .infinity)]), ("Tent Blur", [("blurDiameter", 0, .infinity)]), ("Median Blur", [("blurDiameter", 3, 30)]), ("Area Max", [("kernelRadius", 0, 256)]), ("Area Min", [("kernelRadius", 0, 256)]), ("Lanczos Scale", [("scaleX", 0.1, 1), ("scaleY", 0.1, 1), ("translateX", -1000, 1000), ("translateY", -1000, 1000)]), ("Bilinear Scale", [("scaleX", 0, 1), ("scaleY", 0, 1), ("translateX", -1000, 1000), ("translateY", -1000, 1000)]), ("Sobel Edge Detection", []), ("Laplacian Edge Detection", [("bias", 0, 1)]), ("Threshold Binary", [("thresholdValue", 0, 1), ("maximumValue", 0, 1)])],
-        [("Brightness", [("brightness", -1, 1)]), ("Saturation", [("saturation", 0, 2)]), ("Contrast", [("contrast", -1, 1)]), ("White Balance", [("temperature", 0, 10000), ("tint", -256, 256)]), ("Hue", [("hue", -256, 256)]), ("Sharpen", [("sharpness", -10, 10)])],
-        [("Contrast => Gaussian Blur", []), ("Area Max => Sharpen", []), ("Hue => Brightness => Box Blur", [])]
+        [("Photo", []),
+         ("Camera", [])
+        ],
+        [("Gaussian Blur", [
+            ("sigma", 0, 256)
+        ]),
+        ("Box Blur", [
+            ("blurDiameter", 0, .infinity)
+        ]),
+        ("Tent Blur", [
+            ("blurDiameter", 0, .infinity)
+        ]),
+        ("Median Blur", [
+            ("blurDiameter", 3, 30)
+        ]),
+        ("Area Max", [
+            ("kernelRadius", 0, 256)
+        ]),
+        ("Area Min", [
+            ("kernelRadius", 0, 256)
+        ]),
+        ("Lanczos Scale", [
+            ("scaleX", 0.1, 1),
+            ("scaleY", 0.1, 1),
+            ("translateX", -1000, 1000),
+            ("translateY", -1000, 1000)]),
+        ("Bilinear Scale", [
+            ("scaleX", 0, 1),
+            ("scaleY", 0, 1),
+            ("translateX", -1000, 1000),
+            ("translateY", -1000, 1000)]),
+        ("Sobel Edge Detection", []),
+        ("Laplacian Edge Detection", [
+            ("bias", 0, 1)
+        ]),
+        ("Threshold Binary", [
+            ("thresholdValue", 0, 1),
+            ("maximumValue", 0, 1)
+        ])
+        ],
+        [("Brightness", [
+            ("brightness", -1, 1)
+        ]),
+        ("Saturation", [
+            ("saturation", 0, 2)
+        ]),
+        ("Contrast", [
+            ("contrast", -1, 1)
+        ]),
+        ("White Balance", [
+            ("temperature", 0, 10000),
+            ("tint", -256, 256)
+        ]),
+        ("Hue", [
+            ("hue", -256, 256)
+        ]),
+        ("Sharpen", [
+            ("sharpness", -10, 10)
+        ])
+        ],
+        [("Contrast => Gaussian Blur", []),
+         ("Area Max => Sharpen", []),
+         ("Hue => Brightness => Box Blur", [])
+        ]
     ]
 
     init() {

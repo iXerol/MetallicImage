@@ -1,3 +1,11 @@
+//
+//  PictureOutput.swift
+//  MetallicImage
+//
+//  Created by Xerol Wong on 3/30/20.
+//  Copyright © 2020 Xerol Wong. All rights reserved.
+//
+
 #if canImport(UIKit)
 import UIKit
 public typealias PlatformImageType = UIImage

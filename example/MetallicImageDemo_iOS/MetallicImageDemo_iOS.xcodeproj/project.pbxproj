@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -12,45 +12,14 @@
 		843DB8DD240F0C33005CCB77 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843DB8DC240F0C33005CCB77 /* ViewController.swift */; };
 		843DB8E2240F0C34005CCB77 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 843DB8E1240F0C34005CCB77 /* Assets.xcassets */; };
 		843DB8E5240F0C34005CCB77 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 843DB8E3240F0C34005CCB77 /* LaunchScreen.storyboard */; };
+		8449857F264307D900AAF364 /* MetallicImage in Frameworks */ = {isa = PBXBuildFile; productRef = 8449857E264307D900AAF364 /* MetallicImage */; };
+		84498580264307D900AAF364 /* MetallicImage in Embed Frameworks */ = {isa = PBXBuildFile; productRef = 8449857E264307D900AAF364 /* MetallicImage */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		848768632459B66E005D290E /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848768622459B66E005D290E /* CameraViewController.swift */; };
 		8488D11E2453E6D800F27109 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8488D11C2453E6D800F27109 /* Localizable.strings */; };
-		848EE44424126C8C00E0A11E /* MetallicImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 848EE43F24126C7600E0A11E /* MetallicImage.framework */; };
-		848EE44524126C8C00E0A11E /* MetallicImage.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 848EE43F24126C7600E0A11E /* MetallicImage.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		84A313ED243283A700176DAF /* ImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A313EC243283A700176DAF /* ImageViewController.swift */; };
 		84AE2B32245C7F890074F3ED /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 84AE2B34245C7F890074F3ED /* InfoPlist.strings */; };
 		84EB5AB42470025E00F157A9 /* MultiFilterImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84EB5AB32470025E00F157A9 /* MultiFilterImageViewController.swift */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		848EE43E24126C7600E0A11E /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 843DB8ED240F0C64005CCB77 /* MetallicImage.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 843DB88A240F0438005CCB77;
-			remoteInfo = MetallicImage_iOS;
-		};
-		848EE44024126C7600E0A11E /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 843DB8ED240F0C64005CCB77 /* MetallicImage.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 843DB8A7240F04A0005CCB77;
-			remoteInfo = MetallicImage_macOS;
-		};
-		848EE44224126C7600E0A11E /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 843DB8ED240F0C64005CCB77 /* MetallicImage.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 843DB8B4240F0619005CCB77;
-			remoteInfo = MetallicImage_tvOS;
-		};
-		848EE44624126C9200E0A11E /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 843DB8ED240F0C64005CCB77 /* MetallicImage.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 843DB889240F0438005CCB77;
-			remoteInfo = MetallicImage_iOS;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		84822D0F241213F40056058D /* Embed Frameworks */ = {
@@ -59,7 +28,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				848EE44524126C8C00E0A11E /* MetallicImage.framework in Embed Frameworks */,
+				84498580264307D900AAF364 /* MetallicImage in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -74,8 +43,8 @@
 		843DB8E1240F0C34005CCB77 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		843DB8E4240F0C34005CCB77 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		843DB8E6240F0C34005CCB77 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		843DB8ED240F0C64005CCB77 /* MetallicImage.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = MetallicImage.xcodeproj; path = ../../framework/MetallicImage.xcodeproj; sourceTree = "<group>"; };
 		843DB8FD240F0CAF005CCB77 /* MetallicImageDemo_iOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MetallicImageDemo_iOS.entitlements; sourceTree = "<group>"; };
+		8449857D264307B700AAF364 /* MetallicImage-Dev */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "MetallicImage-Dev"; path = ../..; sourceTree = "<group>"; };
 		848768622459B66E005D290E /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
 		8488D11D2453E6D800F27109 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		8488D11F2453E6E400F27109 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -93,7 +62,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				848EE44424126C8C00E0A11E /* MetallicImage.framework in Frameworks */,
+				8449857F264307D900AAF364 /* MetallicImage in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -155,19 +124,9 @@
 		843DB911240F2F8A005CCB77 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				843DB8ED240F0C64005CCB77 /* MetallicImage.xcodeproj */,
+				8449857D264307B700AAF364 /* MetallicImage-Dev */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		848EE43924126C7600E0A11E /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				848EE43F24126C7600E0A11E /* MetallicImage.framework */,
-				848EE44124126C7600E0A11E /* MetallicImage.framework */,
-				848EE44324126C7600E0A11E /* MetallicImage.framework */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -185,9 +144,11 @@
 			buildRules = (
 			);
 			dependencies = (
-				848EE44724126C9200E0A11E /* PBXTargetDependency */,
 			);
 			name = MetallicImageDemo_iOS;
+			packageProductDependencies = (
+				8449857E264307D900AAF364 /* MetallicImage */,
+			);
 			productName = MetallicImageDemo_iOS;
 			productReference = 843DB8D5240F0C33005CCB77 /* MetallicImageDemo.app */;
 			productType = "com.apple.product-type.application";
@@ -220,42 +181,12 @@
 			mainGroup = 843DB8CC240F0C33005CCB77;
 			productRefGroup = 843DB8D6240F0C33005CCB77 /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = 848EE43924126C7600E0A11E /* Products */;
-					ProjectRef = 843DB8ED240F0C64005CCB77 /* MetallicImage.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				843DB8D4240F0C33005CCB77 /* MetallicImageDemo_iOS */,
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-		848EE43F24126C7600E0A11E /* MetallicImage.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = MetallicImage.framework;
-			remoteRef = 848EE43E24126C7600E0A11E /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		848EE44124126C7600E0A11E /* MetallicImage.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = MetallicImage.framework;
-			remoteRef = 848EE44024126C7600E0A11E /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		848EE44324126C7600E0A11E /* MetallicImage.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = MetallicImage.framework;
-			remoteRef = 848EE44224126C7600E0A11E /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		843DB8D3240F0C33005CCB77 /* Resources */ = {
@@ -286,14 +217,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		848EE44724126C9200E0A11E /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = MetallicImage_iOS;
-			targetProxy = 848EE44624126C9200E0A11E /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		843DB8E3240F0C34005CCB77 /* LaunchScreen.storyboard */ = {
@@ -453,7 +376,7 @@
 				DERIVE_MACCATALYST_PRODUCT_BUNDLE_IDENTIFIER = YES;
 				DEVELOPMENT_TEAM = 52892NMS89;
 				INFOPLIST_FILE = MetallicImageDemo_iOS/Resources/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -461,9 +384,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.ixerol.MetallicImageDemo-iOS";
 				PRODUCT_NAME = MetallicImageDemo;
 				SUPPORTS_MACCATALYST = YES;
-				"SWIFT_ACTIVE_COMPILATION_CONDITIONS[sdk=iphoneos14.0]" = XCODE_12;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = "1,2,6";
 				VALID_ARCHS = "arm64 arm64e armv7 armv7s x86_64";
 			};
 			name = Debug;
@@ -477,7 +399,7 @@
 				DERIVE_MACCATALYST_PRODUCT_BUNDLE_IDENTIFIER = YES;
 				DEVELOPMENT_TEAM = 52892NMS89;
 				INFOPLIST_FILE = MetallicImageDemo_iOS/Resources/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -485,9 +407,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.ixerol.MetallicImageDemo-iOS";
 				PRODUCT_NAME = MetallicImageDemo;
 				SUPPORTS_MACCATALYST = YES;
-				"SWIFT_ACTIVE_COMPILATION_CONDITIONS[sdk=iphoneos14.0]" = XCODE_12;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = "1,2,6";
 				VALID_ARCHS = "arm64 arm64e armv7 armv7s x86_64";
 			};
 			name = Release;
@@ -514,6 +435,13 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		8449857E264307D900AAF364 /* MetallicImage */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = MetallicImage;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 843DB8CD240F0C33005CCB77 /* Project object */;
 }

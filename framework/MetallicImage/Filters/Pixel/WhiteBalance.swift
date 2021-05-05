@@ -1,3 +1,11 @@
+//
+//  WhiteBalance.swift
+//  MetallicImage
+//
+//  Created by Xerol Wong on 5/15/20.
+//  Copyright © 2020 Xerol Wong. All rights reserved.
+//
+
 import Foundation
 
 public class WhiteBalance: BasicFilter {

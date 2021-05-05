@@ -1,8 +1,17 @@
+//
+//  Camera.swift
+//  MetallicImage
+//
+//  Created by Xerol Wong on 4/28/20.
+//  Copyright © 2020 Xerol Wong. All rights reserved.
+//
+
 #if !os(tvOS)
 import AVFoundation
 import Foundation
 import Metal
 
+@available(iOS 9.0, macOS 10.13, macCatalyst 14.0, *)
 public class Camera: NSObject, ImageSource {
     public enum CameraError: Error {
         case noCameraDevice
@@ -34,6 +43,8 @@ public class Camera: NSObject, ImageSource {
                 return CGColorSpace(name: CGColorSpace.sRGB)
             case .P3_D65:
                 return CGColorSpace(name: CGColorSpace.dcip3)
+            case .HLG_BT2020:
+                return CGColorSpace(name: CGColorSpace.itur_2020)
             @unknown default:
                 return nil
             }
@@ -144,6 +155,7 @@ public class Camera: NSObject, ImageSource {
     }
 }
 
+@available(iOS 9.0, tvOS 9.0, macOS 10.13, macCatalyst 14.0, *)
 extension Camera: AVCaptureVideoDataOutputSampleBufferDelegate {
     public func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
         guard frameRenderingSemaphore.wait(timeout: .now()) == DispatchTimeoutResult.success else { return }

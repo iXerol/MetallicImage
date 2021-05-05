@@ -1,3 +1,11 @@
+//
+//  LanzosScale.swift
+//  MetallicImage
+//
+//  Created by Xerol Wong on 5/14/20.
+//  Copyright © 2020 Xerol Wong. All rights reserved.
+//
+
 import MetalPerformanceShaders
 
 public class LanczosScale: BasicMPSFilter {

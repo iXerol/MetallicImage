@@ -1,3 +1,11 @@
+//
+//  CameraViewController.swift
+//  MetallicImageDemo_iOS
+//
+//  Created by Xerol Wong on 4/29/20.
+//  Copyright © 2020 Xerol Wong. All rights reserved.
+//
+
 import AVFoundation
 import MetallicImage
 import Photos
@@ -204,11 +212,7 @@ class CameraViewController: UIViewController {
                 setCameraOrientation()
             } catch Camera.CameraError.noCameraDevice {
                 camera = nil
-                #if targetEnvironment(macCatalyst)
-                let message = NSLocalizedString("Not_Support_Catalyst", comment: "Mac apps built with Mac Catalyst can’t use the AVFoundation Capture classes.")
-                #else
                 let message = NSLocalizedString("No_Camera", comment: "There's no camera")
-                #endif
                 let alertController = UIAlertController(title: NSLocalizedString("Camera_Error", comment: "Cannot access camera"),
                                                         message: message,
                                                         preferredStyle: .alert)

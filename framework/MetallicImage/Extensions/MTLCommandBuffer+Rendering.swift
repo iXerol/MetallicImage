@@ -1,3 +1,11 @@
+//
+//  MTLCommandBuffer+Rendering.swift
+//  MetallicImage
+//
+//  Created by Xerol Wong on 3/27/20.
+//  Copyright © 2020 Xerol Wong. All rights reserved.
+//
+
 import Metal
 
 public let standardImagePosition: [Float] = [-1.0, -1.0, 1.0, -1.0, -1.0, 1.0, 1.0, 1.0]

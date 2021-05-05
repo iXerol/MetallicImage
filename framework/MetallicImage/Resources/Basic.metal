@@ -1,3 +1,11 @@
+//
+//  Passthrough.metal
+//  MetallicImage
+//
+//  Created by Xerol Wong on 4/1/20.
+//  Copyright © 2020 Xerol Wong. All rights reserved.
+//
+
 #include <metal_stdlib>
 #include "ShaderTypes.h"
 using namespace metal;

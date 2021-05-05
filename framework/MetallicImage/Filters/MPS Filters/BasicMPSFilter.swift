@@ -1,3 +1,11 @@
+//
+//  BasicMPSFilter.swift
+//  MetallicImage
+//
+//  Created by Xerol Wong on 4/19/20.
+//  Copyright © 2020 Xerol Wong. All rights reserved.
+//
+
 import MetalPerformanceShaders
 
 open class BasicMPSFilter: BasicFilter {
