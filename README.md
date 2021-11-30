@@ -1,6 +1,6 @@
 # MetallicImage
 
-![Swift](https://img.shields.io/badge/Swift-5.3%2B-orange) ![Platform](https://img.shields.io/badge/platforms-iOS%209.0%2B%20%7C%20macOS%2010.13%2B%20%7C%20tvOS%209.0%2B-green)
+![Swift](https://img.shields.io/badge/Swift-5.3%2B-orange) ![Platform](https://img.shields.io/badge/platforms-iOS%209.0%2B%20%7C%20macOS%2010.11%2B%20%7C%20tvOS%209.0%2B-green)
 
 MetallicImage is an Image Processing Framework on Apple Platforms using Metal and written in Swift.
 

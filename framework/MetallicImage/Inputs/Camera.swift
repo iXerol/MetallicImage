@@ -37,20 +37,15 @@ public class Camera: NSObject, ImageSource {
     public var runBenchmark: Bool = false
 
     var colorSpace: CGColorSpace? {
-        if #available(iOS 10.0, OSX 10.15, *) {
-            switch inputCamera.activeColorSpace {
-            case .sRGB:
-                return CGColorSpace(name: CGColorSpace.sRGB)
-            case .P3_D65:
-                return CGColorSpace(name: CGColorSpace.dcip3)
-            case .HLG_BT2020:
-                return CGColorSpace(name: CGColorSpace.itur_2020)
-            @unknown default:
-                return nil
-            }
+#if targetEnvironment(macCatalyst)
+        inputCamera.activeColorSpace.cgColorSoace
+#else
+        if #available(iOS 10.0, macOS 10.15, *) {
+            return inputCamera.activeColorSpace.cgColorSoace
         } else {
             return nil
         }
+#endif
     }
 
     public init(sessionPreset: AVCaptureSession.Preset = .medium,
@@ -81,11 +76,11 @@ public class Camera: NSObject, ImageSource {
             case .back:
                 self.orientation = .landscapeLeft
             case .front:
-                #if os(iOS)
+#if os(iOS)
                 self.orientation = .landscapeRightMirrored
-                #else
+#else
                 self.orientation = .portrait
-                #endif
+#endif
             default:
                 self.orientation = .landscapeLeft
             }
@@ -191,4 +186,21 @@ extension Camera: AVCaptureVideoDataOutputSampleBufferDelegate {
         }
     }
 }
+
+@available(iOS 10.0, macOS 10.15, macCatalyst 14.0, *)
+extension AVCaptureColorSpace {
+    var cgColorSoace: CGColorSpace? {
+        switch self {
+        case .sRGB:
+            return .init(name: CGColorSpace.sRGB)
+        case .P3_D65:
+            return .init(name: CGColorSpace.dcip3)
+        case .HLG_BT2020:
+            return .init(name: CGColorSpace.itur_2020)
+        @unknown default:
+            return nil
+        }
+    }
+}
+
 #endif

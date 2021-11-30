@@ -8,7 +8,7 @@
 
 import MetalPerformanceShaders
 
-@available(iOS 11.0, tvOS 11.0, *)
+@available(iOS 11.0, macOS 13.0, tvOS 11.0, *)
 public class ResizeTexture: BasicMPSFilter {
     private var scaleTransform = MPSScaleTransform()
 

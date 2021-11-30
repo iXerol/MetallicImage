@@ -16,7 +16,18 @@ public class ImageView: MTKView, ImageConsumer {
     var renderTarget: RenderTargetState
     public var orientation: ImageOrientation = .portrait
 
-    public init(frame frameRect: CGRect, context: MIContext = .default) {
+#if targetEnvironment(simulator)
+    @available(iOS 13.0, macOS 10.11, tvOS 13.0, *)
+    private var metalLayer: CAMetalLayer? {
+        layer as? CAMetalLayer
+    }
+#else
+    private var metalLayer: CAMetalLayer? {
+        layer as? CAMetalLayer
+    }
+#endif
+
+    public init(frame frameRect: CGRect = .zero, context: MIContext = .default) {
         renderTarget = RenderTargetState(context: context)
         super.init(frame: frameRect, device: context.device)
         commonInit()
@@ -31,9 +42,15 @@ public class ImageView: MTKView, ImageConsumer {
     }
 
     func commonInit() {
-        if #available(iOS 11.0, OSX 10.13, tvOS 11.0, *) {
-            (layer as? CAMetalLayer)?.allowsNextDrawableTimeout = false
+#if targetEnvironment(simulator)
+        if #available(iOS 13.0, macOS 10.13, tvOS 13.0, *) {
+            metalLayer?.allowsNextDrawableTimeout = false
         }
+#else
+        if #available(iOS 11.0, macOS 10.13, tvOS 11.0, *) {
+            metalLayer?.allowsNextDrawableTimeout = false
+        }
+#endif
         framebufferOnly = false
         autoResizeDrawable = true
         enableSetNeedsDisplay = false
@@ -61,7 +78,7 @@ public class ImageView: MTKView, ImageConsumer {
         }
         if #available(iOS 13.0, macOS 10.12, tvOS 13.0, *) {
             DispatchQueue.main.async {
-                (self.layer as? CAMetalLayer)?.colorspace = texture.colorSpace
+                self.metalLayer?.colorspace = texture.colorSpace
             }
         }
         draw()
