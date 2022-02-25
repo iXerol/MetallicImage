@@ -148,8 +148,8 @@ public class MovieOutput: ImageConsumer {
         commandBuffer?.commit()
         commandBuffer?.waitUntilCompleted()
 
-        let region = MTLRegionMake2D(0, 0, outputTexture.texture.width, outputTexture.texture.height)
+        let region = MTLRegionMake2D(0, 0, outputTexture().width, outputTexture().height)
 
-        outputTexture.texture.getBytes(pixelBufferBytes, bytesPerRow: bytesPerRow, from: region, mipmapLevel: 0)
+        outputTexture().getBytes(pixelBufferBytes, bytesPerRow: bytesPerRow, from: region, mipmapLevel: 0)
     }
 }

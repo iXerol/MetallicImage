@@ -55,7 +55,7 @@ public class Texture {
         return texture.pixelFormat
     }
 
-    public init(texture: MTLTexture,
+    public init(texture: any MTLTexture,
                 orientation: ImageOrientation,
                 timingType: TimingType = .stillImage,
                 colorSpace: CGColorSpace? = nil) {
@@ -193,4 +193,8 @@ extension Texture {
         return NSImage(cgImage: cgImage, size: CGSize(width: cgImage.width, height: cgImage.height))
     }
     #endif
+
+    func callAsFunction() -> some MTLTexture {
+        texture
+    }
 }

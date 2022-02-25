@@ -144,3 +144,11 @@ extension ImageOrientation {
         }
     }
 }
+
+public struct SomeStruct {
+    public let a: Int
+
+    public init(a: Int) {
+        self.a = a
+    }
+}

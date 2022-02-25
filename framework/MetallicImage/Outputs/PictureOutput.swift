@@ -33,13 +33,13 @@ public class PictureOutput: ImageConsumer {
 
         let outputTexture: Texture
         if texture.orientation.rotationNeeded(for: orientation).flipsDimensions() {
-            outputTexture = Texture(device: texture.texture.device,
+            outputTexture = Texture(device: texture().device,
                                     orientation: orientation,
                                     width: texture.height,
                                     height: texture.width,
                                     colorSpace: texture.colorSpace)
         } else {
-            outputTexture = Texture(device: texture.texture.device,
+            outputTexture = Texture(device: texture().device,
                                     orientation: orientation,
                                     width: texture.width,
                                     height: texture.height,

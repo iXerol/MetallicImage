@@ -54,7 +54,7 @@ public class ResizeTexture: BasicMPSFilter {
         }
         commandBuffer.label = operationName
         if useMetalPerformanceShaders {
-            renderWithShader(commandBuffer: commandBuffer, sourceTexture: texture.texture, destinationTexture: outputTexture.texture)
+            renderWithShader(commandBuffer: commandBuffer, sourceTexture: texture(), destinationTexture: outputTexture())
         } else {
             commandBuffer.render(from: texture, to: outputTexture, targetState: renderTarget)
         }

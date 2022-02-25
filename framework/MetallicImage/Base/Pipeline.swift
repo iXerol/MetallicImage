@@ -125,3 +125,9 @@ class WeakImageConsumer {
         self.value = value
     }
 }
+
+public extension SomeStruct {
+    func printA() {
+        print(a)
+    }
+}
